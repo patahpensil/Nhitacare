@@ -1,0 +1,1 @@
+NHITACARE staging candidate. Extract ZIP and upload contents to Cloudflare Pages. No production deployment authorized. Google Maps and fonts require internet. Social account URLs are placeholders. Run external NHITACARE_TEST.py with this ZIP. Live HTTP headers and external services require staging verification.
