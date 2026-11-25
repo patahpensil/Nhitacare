@@ -1,0 +1,40 @@
+name: NHITACARE staging
+on:
+  push:
+    branches: [main]
+    paths: ['public/**', 'wrangler.json', '.github/workflows/staging.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: nhitacare-staging
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate map and security policy
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, hashlib, base64
+          root = Path('public')
+          headers = (root / '_headers').read_text()
+          assert 'frame-src https://maps.google.com https://www.google.com;' in headers
+          assert "frame-ancestors 'none'" in headers
+          assert 'X-Frame-Options: DENY' in headers
+          assert 'https://maps.google.com/maps?' in (root / 'index.html').read_text()
+          for page in root.glob('*.html'):
+              for script in re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', page.read_text(), re.S | re.I):
+                  digest = base64.b64encode(hashlib.sha256(script.encode()).digest()).decode()
+                  assert 'sha256-' + digest in headers, page.name
+          PY
+      - name: Deploy existing Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ID_TOKEN }}
+        run: npx --yes wrangler@4 deploy --config wrangler.json
