@@ -2,7 +2,7 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Robots-Tag: noindex, nofollow, noarchive
-  Content-Security-Policy: default-src 'none'; script-src 'sha256-3H770+x+oFG7hMtBWMF5XQXiH6UkFkjR7Un8YCNiY4I=' 'sha256-6e0yL8JkCKUOd4W17G19mQ0RTIEWDrX3Y8O5S2+XTvI=' 'sha256-8ZNSahDIBy144S7iixluI+H6SZ6jQBwlybxu+eBUDEc=' 'sha256-RudYaogco4V6RUw4BTbK98n5Q0z5hs87Se/02mJD7jg=' 'sha256-fGCPBmFM70zrykKAQA8dvfwnzVWYoUVigI024zC1GuU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' data:; connect-src 'self'; frame-src https://maps.google.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'sha256-3H770+x+oFG7hMtBWMF5XQXiH6UkFkjR7Un8YCNiY4I=' 'sha256-6e0yL8JkCKUOd4W17G19mQ0RTIEWDrX3Y8O5S2+XTvI=' 'sha256-8ZNSahDIBy144S7iixluI+H6SZ6jQBwlybxu+eBUDEc=' 'sha256-RudYaogco4V6RUw4BTbK98n5Q0z5hs87Se/02mJD7jg=' 'sha256-fGCPBmFM70zrykKAQA8dvfwnzVWYoUVigI024zC1GuU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' data:; connect-src 'self'; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), accelerometer=(), gyroscope=(), magnetometer=(), usb=()
   Strict-Transport-Security: max-age=300
